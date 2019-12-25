@@ -1,0 +1,27 @@
+usefull in inserting images into markdown
+#使用python将图片转化为base64字符串
+import base64
+f = open('/Users/kidd/Downloads/humanParsing.jpg','rb')
+ls_f=base64.b64encode(f.read()) #读取文件内容，转换为base64编码
+print(ls_f)
+
+#base64字符串转化为图片
+import base64
+bs='iVBORw0KGgoAAAANSUhEUg....' # 太长了省略
+imgdata=base64.b64decode(bs)
+file=open('2.jpg','wb')
+file.write(imgdata)
+file.close()
+
+基础用法：
+![avatar](data:image/png;base64,iVBORw0......)
+这个时候会发现插入的这一长串字符串会把整个文章分割开，非常影响编写文章时的体验。如果能够把大段的base64字符串放在文章末尾，然后在文章中通过一个id来调用，文章就不会被分割的这么乱了。
+高级用法
+比如：
+![avatar][base64str]
+[base64str]:data:image/png;base64,iVBORw0......
+
+作者：清风Python
+链接：https://www.jianshu.com/p/280c6a6f2594
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
